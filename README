@@ -1,0 +1,3 @@
+# run cmd
+docker run -p 25:25 --name=postfix postfix user pass domain
+
