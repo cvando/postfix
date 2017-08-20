@@ -50,6 +50,7 @@ RUN    echo 'pwcheck_method: saslauthd' >> /etc/postfix/sasl/smtpd.conf
 RUN    echo 'mech_list: plain login' >> /etc/postfix/sasl/smtpd.conf  
 RUN    mkdir /etc/postfix/ssl 
 
+RUN   sed -i "s/#submission/submission/g" /etc/postfix/master.cf 
 
 # Configure SASL2
 
