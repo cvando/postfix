@@ -11,10 +11,10 @@ RUN debconf-set-selections preseed.txt
 
 # install
 RUN apt-get update; apt-get install -y \
-    libdb5.1 \
+        libdb5.1 \
 	postfix \
-	procmail \
-	sasl2-bin \
+        rsyslog \
+        sasl2-bin \
 	libsasl2-modules \
 	libsasl2-modules-sql \
 	libgsasl7 \
