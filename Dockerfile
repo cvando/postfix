@@ -13,7 +13,7 @@ RUN debconf-set-selections preseed.txt
 RUN apt-get update; apt-get install -y \
         libdb5.1 \
 	postfix \
-        rsyslog \
+        syslog-ng \
         sasl2-bin \
 	libsasl2-modules \
 	libsasl2-modules-sql \
