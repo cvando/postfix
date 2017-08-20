@@ -9,6 +9,7 @@ touch /var/log/mail.log
 
 sed -i "s/myhostname = server1.example.com/myhostname = $3/g" /etc/postfix/main.cf
 
+service syslog-ng start
 service saslauthd start
 service postfix start
 
