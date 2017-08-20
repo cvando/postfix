@@ -50,6 +50,11 @@ RUN mkdir -p /var/spool/postfix/var/run/saslauthd \
     chown -R root:sasl /var/spool/postfix/var/ \
     chmod 710 /var/spool/postfix/var/run/saslauthd \
 
+RUN sed -i "s/#START=yes/START=yes/g" /etc/default/saslauthd \
+    sed -i "s/OPTIONS=.*/OPTIONS="-m /var/spool/postfix/var/run/saslauthd"/g" /etc/default/saslauthd
+	
+	
+	
 # Postfix Ports
 EXPOSE 25
 
