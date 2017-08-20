@@ -37,6 +37,13 @@ RUN    postconf -e 'smtp_use_tls = yes'
 RUN    postconf -e 'smtp_tls_note_starttls_offer = yes' 
 RUN    postconf -e 'myhostname = server1.example.com' 
 RUN    postconf -e 'always_add_missing_headers = yes'
+RUN    postconf -e 'smtp_tls_note_starttls_offer = yes' 
+RUN    postconf -e 'smtpd_tls_key_file = /etc/postfix/ssl/smtpd.key' 
+RUN    postconf -e 'smtpd_tls_cert_file = /etc/postfix/ssl/smtpd.crt' 
+RUN    postconf -e 'smtpd_tls_loglevel = 1' 
+RUN    postconf -e 'smtpd_tls_received_header = yes' 
+RUN    postconf -e 'smtpd_tls_session_cache_timeout = 3600s'
+RUN    postconf -e 'tls_random_source = dev:/dev/urandom' 
 
 RUN    touch /etc/postfix/sasl/smtpd.conf 
 RUN    echo 'pwcheck_method: saslauthd' >> /etc/postfix/sasl/smtpd.conf 
@@ -68,6 +75,7 @@ RUN	sed -i 's/^#\(SYSLOGNG_OPTS="--no-caps"\)/\1/g' /etc/default/syslog-ng
 	
 # Postfix Ports
 EXPOSE 25
+EXPOSE 587
 
 # Add startup script
 ADD startup.sh /startup.sh
