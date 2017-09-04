@@ -1,3 +1,3 @@
 # run cmd
-docker run -p 25:25 --name=postfix postfix user pass domain
+docker run -v /yourdir:/etc/postfix/ssl -p 587:587 -p 25:25 --name=postfix oquva/postfix user pass domain
 
