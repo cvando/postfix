@@ -23,6 +23,7 @@ else
   cd /
 fi
 
+chmod 644 /var/log/mail.log
 
 service syslog-ng start
 service saslauthd start
