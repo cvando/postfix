@@ -29,5 +29,4 @@ service syslog-ng start
 service saslauthd start
 service postfix start
 
-chmod 644 /var/log/mail.log
 tail -F /var/log/mail.*
