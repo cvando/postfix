@@ -1,4 +1,4 @@
-FROM phusion/baseimage
+FROM ubuntu:16.04
 MAINTAINER clement vandoolaeghe
 
 # pre config
