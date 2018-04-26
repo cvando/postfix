@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM phusion/baseimage
 MAINTAINER clement vandoolaeghe
 
 # pre config
@@ -23,34 +23,12 @@ RUN apt-get update; apt-get install -y \
 	
 # add user postfix to sasl group
 RUN adduser postfix sasl
-	
-# Configure postfix
 
-RUN    postconf -e 'smtpd_sasl_local_domain =' 
-RUN    postconf -e 'smtpd_sasl_auth_enable = yes' 
-RUN    postconf -e 'smtpd_sasl_security_options = noanonymous' 
-RUN    postconf -e 'broken_sasl_auth_clients = yes' 
-RUN    postconf -e 'smtpd_recipient_restrictions = permit_sasl_authenticated,permit_mynetworks,reject_unauth_destination' 
-RUN    postconf -e 'inet_interfaces = all' 
-RUN	   postconf -e 'smtpd_tls_auth_only = no' 
-RUN    postconf -e 'smtp_use_tls = yes' 
-RUN    postconf -e 'smtp_tls_note_starttls_offer = yes' 
-RUN    postconf -e 'myhostname = server1.example.com' 
-RUN    postconf -e 'always_add_missing_headers = yes'
-RUN    postconf -e 'smtp_tls_note_starttls_offer = yes' 
-RUN    postconf -e 'smtpd_tls_CAfile = /etc/postfix/ssl/cacert.pem'
-RUN    postconf -e 'smtpd_tls_key_file = /etc/postfix/ssl/smtpd.key' 
-RUN    postconf -e 'smtpd_tls_cert_file = /etc/postfix/ssl/smtpd.crt' 
-RUN    postconf -e 'smtpd_tls_loglevel = 1' 
-RUN    postconf -e 'smtpd_tls_received_header = yes' 
-RUN    postconf -e 'smtpd_tls_session_cache_timeout = 3600s'
-RUN    postconf -e 'tls_random_source = dev:/dev/urandom' 
 
 RUN    touch /etc/postfix/sasl/smtpd.conf 
 RUN    echo 'pwcheck_method: saslauthd' >> /etc/postfix/sasl/smtpd.conf 
 RUN    echo 'mech_list: plain login' >> /etc/postfix/sasl/smtpd.conf  
 RUN    mkdir /etc/postfix/ssl 
-
 RUN   sed -i "s/#submission/submission/g" /etc/postfix/master.cf 
 
 # Configure SASL2
@@ -60,11 +38,11 @@ RUN   rm -fr /var/run/saslauthd
 RUN   ln -s /var/spool/postfix/var/run/saslauthd /var/run/saslauthd 
 RUN   chown -R root:sasl /var/spool/postfix/var/ 
 RUN   chmod 710 /var/spool/postfix/var/run/saslauthd 
-
 RUN   sed -i "s/START=no/START=yes/g" /etc/default/saslauthd 
 RUN   sed -i 's/OPTIONS=.*/OPTIONS="-m \/var\/spool\/postfix\/var\/run\/saslauthd"/g' /etc/default/saslauthd
 
 
+ADD   conf/main.cf /etc/postfix/main.cf
 ADD   conf/syslog-ng.conf /etc/syslog-ng/syslog-ng.conf
 
 	
