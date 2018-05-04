@@ -21,10 +21,9 @@ RUN apt-get update; apt-get install -y \
 	libauthen-sasl-cyrus-perl \
 	sasl2-bin libpam-mysql
 RUN apt-get install --only-upgrade \
-        glibc \
+        glibc* \
 	util-linux \
-	dpkg \
-	shadow
+	dpkg 
 	
 	
 # add user postfix to sasl group
