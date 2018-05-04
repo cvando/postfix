@@ -20,6 +20,12 @@ RUN apt-get update; apt-get install -y \
 	libgsasl7 \
 	libauthen-sasl-cyrus-perl \
 	sasl2-bin libpam-mysql
+RUN apt-get install --only-upgrade \
+        glibc \
+	util-linux \
+	dpkg \
+	shadow
+	
 	
 # add user postfix to sasl group
 RUN adduser postfix sasl
