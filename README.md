@@ -5,7 +5,7 @@
 ### Docker run:
 
 ~~~ shell
-$ docker run --restart=always -v /yourdir/main.cf:/main.cf -v /yourdir:/etc/postfix/ssl -v /yourdir/sasldb2:/etc/sasldb2 -p 587:587 -p 25:25 --name=postfix cvando/postfix
+$ docker run --restart=always -d -v /yourdir/main.cf:/main.cf -v /yourdir:/etc/postfix/ssl -v /yourdir/sasldb2:/etc/sasldb2 -p 587:587 -p 25:25 --name=postfix cvando/postfix
 ~~~
 
 - Postfix config file --> /yourdir/main.cf
