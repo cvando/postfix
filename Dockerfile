@@ -1,5 +1,5 @@
 FROM alpine
-LABEL version="2.1"
+LABEL version="2.2"
 
 RUN	apk add --no-cache --update postfix ca-certificates openssl libsasl cyrus-sasl supervisor rsyslog bash
 

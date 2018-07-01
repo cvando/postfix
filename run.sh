@@ -23,5 +23,11 @@ else
   echo "[run.sh] Using default configuration file"
 fi
 
+
+
+#### fixing touch db #######################
+echo "[run.sh] Initializing database not an error"
+saslpasswd2 -p test@test.com
+
 #### Starting rsyslog postfix ##############
 exec supervisord -c /etc/supervisord.conf
