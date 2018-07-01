@@ -2,7 +2,7 @@
 
 #### Creating certificate ###################
 if [ -e "/etc/postfix/ssl/smtpd.crt" ]; then
-  echo "[run.sh] Using already created Certificat"
+  echo "[run.sh] Using existing Certificat"
 else
   echo "[run.sh] Creating new autosigned certificat"
   cd /etc/postfix/ssl/
