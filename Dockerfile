@@ -3,10 +3,6 @@ LABEL version="2.2"
 
 RUN	apk add --no-cache --update postfix ca-certificates openssl libsasl cyrus-sasl supervisor rsyslog bash
 
-RUN echo test | saslpasswd2 -p test@test.com \
-    && chown postfix /etc/sasldb2 \
-    && saslpasswd2 -d test@test.com
-
 RUN    mkdir /etc/postfix/ssl 
 RUN    sed -i "s/#submission/submission/g" /etc/postfix/master.cf 
 
