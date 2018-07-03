@@ -30,8 +30,10 @@ if [ -e "/etc/sasldb2" ]; then
   echo "[run.sh] Using existing Database"
 else
   touch /etc/sasldb2
+  chown postfix /etc/sasldb2
   echo "[run.sh] V Initializing database not an error V"
   saslpasswd2 -p test@test.com
+  saslpasswd2 -d test@test.com
   echo "[run.sh] ^ Initializing database don't worry ^"
 fi
 
