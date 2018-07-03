@@ -8,7 +8,7 @@
 
 - Certificate/key      --> /youdir/ssl     smtpd.crt smtpd.key auto-generated, can be replace by letsencrypt cert.
 
-- Users db                 --> /yourdir/sa$sldb2
+- Users db                 --> /yourdir/sasldb2
 
   
 
