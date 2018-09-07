@@ -39,7 +39,7 @@ fi
 
 if [ -e "/etc/postfix/sasl_passwd" ]; then
   postmap hash:/etc/postfix/sasl_passwd
-else
+fi
 
 #### Starting rsyslog postfix ##############
 exec supervisord -c /etc/supervisord.conf
