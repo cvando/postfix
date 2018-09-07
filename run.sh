@@ -37,5 +37,9 @@ else
   echo "[run.sh] ^ Initializing database don't worry ^"
 fi
 
+if [ -e "/etc/postfix/sasl_passwd" ]; then
+  postmap hash:/etc/postfix/sasl_passwd
+else
+
 #### Starting rsyslog postfix ##############
 exec supervisord -c /etc/supervisord.conf
