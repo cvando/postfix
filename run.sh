@@ -41,5 +41,9 @@ if [ -e "/etc/postfix/sasl_passwd" ]; then
   postmap hash:/etc/postfix/sasl_passwd
 fi
 
+if [ -e "/etc/postfix/sender_relay" ]; then
+  postmap hash:/etc/postfix/sender_relay
+fi
+
 #### Starting rsyslog postfix ##############
 exec supervisord -c /etc/supervisord.conf
